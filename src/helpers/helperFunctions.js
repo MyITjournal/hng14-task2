@@ -1,8 +1,8 @@
 export function determineAgeGroup(age) {
   if (age === null || age === undefined) return null;
-  if (age <= 12) return "child";
-  if (age <= 19) return "teenager";
-  if (age <= 59) return "adult";
+  if (age > 0 && age <= 12) return "child";
+  if (age >= 13 && age <= 19) return "teenager";
+  if (age >= 20 && age <= 59) return "adult";
   return "senior";
 }
 
@@ -16,7 +16,9 @@ export function formatProfile(r) {
     age: r.age,
     age_group: r.age_group,
     country_id: r.country_id,
-    country_probability: parseFloat(r.country_probability),
+    country_probability: parseFloat(
+      parseFloat(r.country_probability).toFixed(2),
+    ),
     created_at: r.created_at,
   };
 }
